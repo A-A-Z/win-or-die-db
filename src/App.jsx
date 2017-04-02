@@ -9,7 +9,7 @@ import {
 } from './components'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Router history={createBrowserHistory()}>
         <div>

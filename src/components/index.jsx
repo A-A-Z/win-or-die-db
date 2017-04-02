@@ -1,6 +1,6 @@
-import CharactersListContainer  from './CharactersListContainer'
-import FactionsListContainer    from './FactionsListContainer'
-import LandingContainer  from './LandingContainer'
+import CharactersListContainer from './CharactersListContainer'
+import FactionsListContainer from './FactionsListContainer'
+import LandingContainer from './LandingContainer'
 
 export {
   CharactersListContainer,

@@ -90,6 +90,9 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
         include: paths.appSrc,
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
       }
     ],
     loaders: [

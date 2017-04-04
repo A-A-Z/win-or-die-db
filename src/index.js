@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import 'materialize-css/sass/materialize.scss'
+// import 'materialize-css/sass/materialize.scss'
 import './assets/scss/app.scss'
 
 ReactDOM.render(

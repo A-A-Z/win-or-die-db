@@ -1,0 +1,24 @@
+
+.page-title {
+  $colour-title: #FFF;
+
+  color: $colour-title;
+  font-family: 'Game of Thrones';
+  font-size: 1.1em;
+  // line-height: 1.5em;
+  vertical-align: middle;
+
+  .large {
+    display: inline-block;
+    font-size: 1.6em;
+
+    &:first-letter {
+      font-size: 1.3em;
+    }
+  }
+
+  .db {
+    color: darken($colour-title,60%);
+    font-size: 2em;
+  }
+}

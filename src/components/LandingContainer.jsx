@@ -1,31 +1,35 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import { HeaderView } from './Common'
+import { HeaderView, FooterView } from './Common'
 
 export default class LandingContainer extends Component {
   render () {
     return (
-      <main>
+      <div>
         <HeaderView />
-        <div className='container'>
+        <main>
+          <div className='container'>
 
-          <div className='row'>
-            <div className='col s12'>This div is 12-columns wide</div>
-            <div className='col s6'>This div is 6-columns wide</div>
-            <div className='col s6'>This div is 6-columns wide</div>
+            <div className='row'>
+              <div className='col s12'>This div is 12-columns wide</div>
+              <div className='col s6'>This div is 6-columns wide</div>
+              <div className='col s6'>This div is 6-columns wide</div>
+            </div>
+
+            <ul>
+              <li>
+                <Link to={`/characters`}>Characters</Link>
+              </li>
+              <li>
+                <Link to={`/factions`}>Factions</Link>
+              </li>
+            </ul>
           </div>
 
-          <ul>
-            <li>
-              <Link to={`/characters`}>Characters</Link>
-            </li>
-            <li>
-              <Link to={`/factions`}>Factions</Link>
-            </li>
-          </ul>
-        </div>
-      </main>
+        </main>
+        <FooterView />
+      </div>
     )
   }
 }

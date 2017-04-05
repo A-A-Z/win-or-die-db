@@ -1,12 +1,14 @@
 
 .page-title {
-  $colour-title: #FFF;
+  $colour-title: $header-title-colour;
 
   color: $colour-title;
   font-family: 'Game of Thrones';
-  font-size: 1.1em;
-  // line-height: 1.5em;
-  vertical-align: middle;
+  font-size: 2.2em;
+  line-height: 1.1;
+  margin: 0;
+  padding: 5px 0;
+  text-align: center;
 
   .large {
     display: inline-block;
@@ -18,7 +20,22 @@
   }
 
   .db {
-    color: darken($colour-title,60%);
-    font-size: 2em;
+    color: #422;
+    font-family: "Roboto", sans-serif;
+    font-size: 2.7em;
+    font-weight: 600;
   }
+}
+
+.main-header {
+  background-color: $nav-bg-colour;
+  //overflow: hidden;
+}
+
+.main-nav {
+  $height: 30px;
+
+  background-color: #222;
+  height: $height;
+  line-height: $height;
 }

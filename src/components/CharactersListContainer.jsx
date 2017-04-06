@@ -12,7 +12,6 @@ export default class CharactersListContainer extends Component {
   }
   componentWillMount () {
     Data.indexData()
-    console.log('Data.charactersIndex()', Data.charactersIndex)
     this.setState({
       characters: Data.getChatacters()
     })
@@ -30,6 +29,7 @@ export default class CharactersListContainer extends Component {
                   return (
                     <li key={character.nameshort}>
                       {character.namedisplay}
+                      {(character.primFaction) ? <span> ({character.primFaction.namedisplay})</span> : <span />}
                     </li>
                   )
                 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var gsjson = require('google-spreadsheet-to-json');
+const gsjson = require('google-spreadsheet-to-json');
 
 const spreadsheetId = '19u2SdKqF2bhGOj75GQoGi0jsD9DWBf_Xieb2Uy9ZosA';
 const path = './src/data/';
@@ -29,13 +29,16 @@ const createData = function(sheet) {
       console.log('Creating '+path+sheet+fileType);
 
       var fs = require('fs');
-      fs.writeFile(path+sheet+fileType, JSON.stringify(result), function(err) {
+      fs.writeFile(
+        path+sheet+fileType,
+        '{"'+sheet+'":'+JSON.stringify(result)+'}',
+        function(err) {
           if(err) {
               return console.log(err);
           }
-
           console.log('Finsihed '+sheet+'!');
-      });
+        }
+      );
   })
   .catch(function(err) {
       console.log(err.message);

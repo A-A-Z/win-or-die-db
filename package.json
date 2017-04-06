@@ -42,6 +42,7 @@
     "file-loader": "^0.10.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "fs-extra": "0.30.0",
+    "google-spreadsheet-to-json": "^0.3.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
     "jest": "18.1.0",
@@ -63,7 +64,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "data": "node scripts/data.js"
   },
   "jest": {
     "collectCoverageFrom": [

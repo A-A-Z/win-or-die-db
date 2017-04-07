@@ -29,7 +29,7 @@ export default class CharactersListContainer extends Component {
                   return (
                     <li key={character.nameshort}>
                       {character.namedisplay}
-                      {(character.primFaction) ? <span> ({character.primFaction.namedisplay})</span> : <span />}
+                      {(character.factions.primary.length) ? <span> ({character.factions.primary[0].namedisplay})</span> : <span />}
                     </li>
                   )
                 }

@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { Router, Route } from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
 
+import { HeaderView, FooterView } from './components/Common'
+
 import {
   LandingContainer,
-  CharactersListContainer,
-  FactionsListContainer
+  CharactersListContainer
 } from './components'
 
 import {
-  CharacterDetailContainer
+  CharacterDetailContainer,
+  FactionsListContainer
 } from './components/Pages'
 
 class App extends Component {
@@ -17,10 +19,16 @@ class App extends Component {
     return (
       <Router history={createBrowserHistory()}>
         <div>
-          <Route exact path='/' component={LandingContainer} />
-          <Route path='/characters' component={CharactersListContainer} />
-          <Route path='/character/:charKey' component={CharacterDetailContainer} />
-          <Route path='/factions' component={FactionsListContainer} />
+          <HeaderView />
+          <main>
+            <div>
+              <Route exact path='/' component={LandingContainer} />
+              <Route path='/characters' component={CharactersListContainer} />
+              <Route path='/character/:charKey' component={CharacterDetailContainer} />
+              <Route path='/factions' component={FactionsListContainer} />
+            </div>
+          </main>
+          <FooterView />
         </div>
       </Router>
     )

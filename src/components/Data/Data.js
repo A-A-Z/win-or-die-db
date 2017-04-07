@@ -3,6 +3,7 @@ import { CharactersData, CharFactionsData, FactionsData } from '../../data/'
 export default class Data {
   static indexData () {
     this.characters = []
+    this.factions = []
     this.charactersIndex = {}
     this.factionsIndex = {}
 
@@ -20,6 +21,10 @@ export default class Data {
 
     // run through Factions
     for (let [index, entry] of FactionsData.entries()) {
+      let factionsExtend = {
+        members: { primary: [], secondary: [] }
+      }
+      this.factions.push(Object.assign(entry, factionsExtend))
       this.factionsIndex[entry.nameshort] = index
     }
 
@@ -41,5 +46,9 @@ export default class Data {
     } else {
       return null
     }
+  }
+
+  static getFactions () {
+    return this.factions
   }
 }

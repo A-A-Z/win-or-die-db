@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { HeaderView, FooterView } from '../../Common'
 import Data from '../../Data/Data'
 import { DetailsView, NotFoundView } from './Views'
 
@@ -20,17 +19,11 @@ export default class CharacterDetailContainer extends Component {
   }
   render () {
     return (
-      <div>
-        <HeaderView />
-        <main>
-          <div className='container'>
-            {(this.state.character)
-              ? <DetailsView character={this.state.character} />
-              : <NotFoundView />
-            }
-          </div>
-        </main>
-        <FooterView />
+      <div className='container'>
+        {(this.state.character)
+          ? <DetailsView character={this.state.character} />
+          : <NotFoundView />
+        }
       </div>
     )
   }

@@ -1,0 +1,25 @@
+
+.faction-panel {
+  display: inline-block;
+  border: 1px solid #CCC;
+  padding: 1px 4px;
+
+  &.faction {
+
+    &-frey {
+      background-color: #858587;
+      color: #34365D;
+    }
+
+    &-lannister {
+      background-color: #971A14;
+      color: #F1B530;
+    }
+
+    &-stark {
+      background-color: #2F2F2F;
+      color: #9B9B9B;
+    }
+
+  }
+}

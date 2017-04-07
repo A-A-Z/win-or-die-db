@@ -30,7 +30,16 @@ export default class Data {
       this.characters[charIndex].factions[charFact.type].push(FactionsData[factIndex])
     }
   }
+
   static getChatacters () {
     return this.characters
+  }
+
+  static getCharacter (key) {
+    if (this.charactersIndex[key]) {
+      return this.characters[this.charactersIndex[key]]
+    } else {
+      return null
+    }
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { HeaderView, FooterView } from './Common'
 import Data from './Data/Data'
 
@@ -28,7 +29,7 @@ export default class CharactersListContainer extends Component {
                 if (character.ischaracter && character.active) {
                   return (
                     <li key={character.nameshort}>
-                      {character.namedisplay}
+                      <Link to={`/Character/${character.nameshort}`}>{character.namedisplay}</Link>
                       {(character.factions.primary.length) ? <span> ({character.factions.primary[0].namedisplay})</span> : <span />}
                     </li>
                   )

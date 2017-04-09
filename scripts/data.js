@@ -13,7 +13,8 @@ const sheets = [
   'factions',
   'entrances',
   'exits',
-  'methods'
+  'methods',
+  'episodes'
 ]
 
 const createData = function(sheet) {

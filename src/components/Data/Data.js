@@ -1,11 +1,23 @@
-import { CharactersData, CharFactionsData, FactionsData } from '../../data/'
+import { CharactersData, CharFactionsData, FactionsData, EntrancesData, ExitsData, EpisodesData } from '../../data/'
 
 export default class Data {
   static indexData () {
     this.characters = []
     this.factions = []
+    this.episodes = {}
     this.charactersIndex = {}
     this.factionsIndex = {}
+
+    // run through episodes
+    for (let entry of EpisodesData) {
+      if (!this.episodes[entry.season]) {
+        this.episodes[entry.season] = {}
+      }
+
+      this.episodes[entry.season][entry.episode] = {
+        title: entry.title
+      }
+    }
 
     // run through Characters
     for (let [index, entry] of CharactersData.entries()) {
@@ -28,11 +40,23 @@ export default class Data {
       this.factionsIndex[entry.nameshort] = index
     }
 
-    // run though Character-Factions
+    // run through Character-Factions
     for (let charFact of CharFactionsData) {
       let charIndex = this.charactersIndex[charFact.char]
       let factIndex = this.factionsIndex[charFact.faction]
       this.characters[charIndex].factions[charFact.type].push(FactionsData[factIndex])
+    }
+
+    // run through entrances
+    for (let entrance of EntrancesData) {
+      let charIndex = this.charactersIndex[entrance.char]
+      this.characters[charIndex].entrances.push(entrance)
+    }
+
+    // run through exits
+    for (let exit of ExitsData) {
+      let charIndex = this.charactersIndex[exit.char]
+      this.characters[charIndex].exits.push(exit)
     }
   }
 
@@ -50,5 +74,9 @@ export default class Data {
 
   static getFactions () {
     return this.factions
+  }
+
+  static getEpisodes () {
+    return this.episodes
   }
 }

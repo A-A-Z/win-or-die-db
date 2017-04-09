@@ -19,6 +19,9 @@ export default class LandingContainer extends Component {
           <li>
             <Link to={`/factions`}>Factions</Link>
           </li>
+          <li>
+            <Link to={`/episodes`}>Episodes</Link>
+          </li>
         </ul>
       </div>
     )

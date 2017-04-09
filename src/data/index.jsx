@@ -6,6 +6,7 @@ import { factions as FactionsData } from './factions.json'
 import { entrances as EntrancesData } from './entrances.json'
 import { exits as ExitsData } from './exits.json'
 import { methods as MethodsData } from './methods.json'
+import { episodes as EpisodesData } from './episodes.json'
 
 export {
   CharactersData,
@@ -15,5 +16,6 @@ export {
   FactionsData,
   EntrancesData,
   ExitsData,
-  MethodsData
+  MethodsData,
+  EpisodesData
 }

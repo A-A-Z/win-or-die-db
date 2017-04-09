@@ -11,6 +11,7 @@ import { // TODO Get ride of this
 
 import {
   CharacterDetailContainer,
+  EpisodeDetailContainer,
   EpisodesListContainer,
   FactionsListContainer
 } from './components/Pages'
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path='/characters' component={CharactersListContainer} />
               <Route path='/character/:charKey' component={CharacterDetailContainer} />
               <Route path='/episodes' component={EpisodesListContainer} />
+              <Route path='/episode/:seasonNum/:episodeNum' component={EpisodeDetailContainer} />
               <Route path='/factions' component={FactionsListContainer} />
             </div>
           </main>

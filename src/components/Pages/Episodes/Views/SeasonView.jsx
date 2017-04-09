@@ -11,6 +11,7 @@ export default class SeasonView extends Component {
       EpisodesList.push(
         <li key={'s' + this.props.seasonNum + '-e' + i}>
           <EpisodeView
+            seasonNum={this.props.seasonNum}
             episodeNum={i}
             episodeData={this.props.seasonData[i]}
           />

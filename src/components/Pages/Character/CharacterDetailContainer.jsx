@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Data from '../../Data/Data'
-import { DetailsView, NotFoundView } from './Views'
+import { DetailsView } from './Views'
+import { NotFoundView } from '../../Common'
 
 export default class CharacterDetailContainer extends Component {
   constructor (props) {

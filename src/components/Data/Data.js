@@ -1,4 +1,11 @@
-import { CharactersData, CharFactionsData, FactionsData, EntrancesData, ExitsData, EpisodesData } from '../../data/'
+import {
+  CharactersData,
+  CharFactionsData,
+  FactionsData,
+  EntrancesData,
+  ExitsData,
+  EpisodesData
+} from '../../data/'
 
 export default class Data {
   static indexData () {
@@ -15,7 +22,9 @@ export default class Data {
       }
 
       this.episodes[entry.season][entry.episode] = {
-        title: entry.title
+        title: entry.title,
+        entrances: [],
+        exits: []
       }
     }
 
@@ -49,14 +58,22 @@ export default class Data {
 
     // run through entrances
     for (let entrance of EntrancesData) {
+      // add to character
       let charIndex = this.charactersIndex[entrance.char]
       this.characters[charIndex].entrances.push(entrance)
+
+      // add to episode
+      this.episodes[entrance.season][entrance.episode].entrances.push(entrance)
     }
 
     // run through exits
     for (let exit of ExitsData) {
+      // add to character
       let charIndex = this.charactersIndex[exit.char]
       this.characters[charIndex].exits.push(exit)
+
+      // add to episode
+      this.episodes[exit.season][exit.episode].exits.push(exit)
     }
   }
 
@@ -65,7 +82,7 @@ export default class Data {
   }
 
   static getCharacter (key) {
-    if (this.charactersIndex[key]) {
+    if (this.charactersIndex.hasOwnProperty(key)) {
       return this.characters[this.charactersIndex[key]]
     } else {
       return null
@@ -78,5 +95,13 @@ export default class Data {
 
   static getEpisodes () {
     return this.episodes
+  }
+
+  static getEpisode (session, episode) {
+    if (this.episodes[session] && this.episodes[session][episode]) {
+      return this.episodes[session][episode]
+    } else {
+      return null
+    }
   }
 }

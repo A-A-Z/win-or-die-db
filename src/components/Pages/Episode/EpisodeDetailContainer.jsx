@@ -12,12 +12,10 @@ export default class EpisodeDetailContainer extends Component {
       loadState: 0,
       episode: {},
       seasonNum: 0,
-      episodeNum: 0,
-      dataObj: null
+      episodeNum: 0
     }
   }
   componentWillMount () {
-    Data.indexData()
     const params = this.props.match.params
     const seasonNum = parseInt(params.seasonNum)
     const episodeNum = parseInt(params.episodeNum)
@@ -32,8 +30,7 @@ export default class EpisodeDetailContainer extends Component {
         loadState: 1,
         episode: episode,
         seasonNum: seasonNum,
-        episodeNum: episodeNum,
-        dataObj: Data
+        episodeNum: episodeNum
       })
     }
   }
@@ -48,7 +45,6 @@ export default class EpisodeDetailContainer extends Component {
             episode={this.state.episode}
             seasonNum={this.state.seasonNum}
             episodeNum={this.state.episodeNum}
-            dataObj={this.state.dataObj}
           />
         )
 

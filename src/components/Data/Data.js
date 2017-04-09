@@ -105,3 +105,5 @@ export default class Data {
     }
   }
 }
+
+Data.indexData()

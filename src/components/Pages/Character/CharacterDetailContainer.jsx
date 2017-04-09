@@ -13,7 +13,6 @@ export default class CharacterDetailContainer extends Component {
     }
   }
   componentWillMount () {
-    Data.indexData()
     this.setState({
       character: Data.getCharacter(this.state.key)
     })

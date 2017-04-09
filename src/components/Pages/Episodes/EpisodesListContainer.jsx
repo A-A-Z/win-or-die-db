@@ -13,7 +13,6 @@ export default class EpisodesListContainer extends Component {
     }
   }
   componentWillMount () {
-    Data.indexData()
     const episodes = Data.getEpisodes()
     this.setState({
       episodes: episodes,

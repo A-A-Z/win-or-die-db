@@ -11,7 +11,6 @@ export default class FactionsListContainer extends Component {
     }
   }
   componentWillMount () {
-    Data.indexData()
     this.setState({
       factions: Data.getFactions()
     })

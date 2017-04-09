@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+
+import { CharLink } from '../../../Common/'
 
 export default class DetailsView extends Component {
   addMove (enterOrExit, index, data) {
-    const character = this.props.dataObj.getCharacter(data.char)
-    return (
-      <li key={enterOrExit + '-' + index}>
-        <Link to={`/Character/${character.nameshort}`}>{character.namedisplay}</Link> {data.type}
-      </li>
-    )
+    if (enterOrExit === 'exit') {
+      return (
+        <li key={enterOrExit + '-' + index}>
+          <CharLink nameShort={data.char} /> {data.type} by <CharLink nameShort={data.by} />
+        </li>
+      )
+    } else {
+      return (
+        <li key={enterOrExit + '-' + index}>
+          <CharLink nameShort={data.char} /> {data.type}
+        </li>
+      )
+    }
   }
   render () {
     let Moves = []
@@ -38,10 +46,9 @@ export default class DetailsView extends Component {
 }
 
 // Property Type Validation
-const { func, number, object } = React.PropTypes
+const { number, object } = React.PropTypes
 
 DetailsView.propTypes = {
-  dataObj: func.isRequired,
   episode: object.isRequired,
   episodeNum: number.isRequired,
   seasonNum: number.isRequired

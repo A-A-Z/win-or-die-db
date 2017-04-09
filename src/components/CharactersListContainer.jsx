@@ -11,7 +11,6 @@ export default class CharactersListContainer extends Component {
     }
   }
   componentWillMount () {
-    Data.indexData()
     this.setState({
       characters: Data.getChatacters()
     })

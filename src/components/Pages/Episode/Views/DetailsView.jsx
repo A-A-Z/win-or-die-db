@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 
-import { CharLink } from '../../../Common/'
+import { CharPanel, MovePanel } from '../../../Common/'
 
 export default class DetailsView extends Component {
   addMove (enterOrExit, index, data) {
     if (enterOrExit === 'exit') {
       return (
-        <li key={enterOrExit + '-' + index}>
-          <CharLink nameShort={data.char} /> {data.type} by <CharLink nameShort={data.by} />
+        <li key={enterOrExit + '-' + index} className='panel-block-line'>
+          <CharPanel nameShort={data.char} />
+          <MovePanel typeClass='exit' typeLabel={data.type} />
+          <CharPanel nameShort={data.by} />
         </li>
       )
     } else {
       return (
-        <li key={enterOrExit + '-' + index}>
-          <CharLink nameShort={data.char} /> {data.type}
+        <li key={enterOrExit + '-' + index} className='panel-block-line'>
+          <CharPanel nameShort={data.char} />
+          <MovePanel typeClass='entrance' typeLabel={data.type} />
         </li>
       )
     }
@@ -39,6 +42,8 @@ export default class DetailsView extends Component {
         <ul>
           {Moves}
         </ul>
+
+        <hr style={{ clear: 'both' }} />
 
       </div>
     )

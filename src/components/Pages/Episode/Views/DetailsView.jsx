@@ -8,7 +8,7 @@ export default class DetailsView extends Component {
       return (
         <li key={enterOrExit + '-' + index} className='panel-block-line'>
           <CharPanel nameShort={data.char} />
-          <MovePanel typeClass='exit' typeLabel={data.type} />
+          <MovePanel typeClass='exit' moveData={data} />
           <CharPanel nameShort={data.by} />
         </li>
       )
@@ -16,7 +16,7 @@ export default class DetailsView extends Component {
       return (
         <li key={enterOrExit + '-' + index} className='panel-block-line'>
           <CharPanel nameShort={data.char} />
-          <MovePanel typeClass='entrance' typeLabel={data.type} />
+          <MovePanel typeClass='entrance' moveData={data} />
         </li>
       )
     }

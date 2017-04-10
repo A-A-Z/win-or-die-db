@@ -24,3 +24,14 @@
   display: block;
   margin-bottom: 1px;
 }
+
+.move-panel {
+  &.move-class {
+    &-entrance {
+      color: $colour-entrance;
+    }
+    &-exit {
+      color: $colour-exit;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
-// require('font-awesome-loader')
+import { Link } from 'react-router-dom'
 import 'font-awesome-loader'
 
 export default class NavView extends Component {
@@ -10,12 +9,12 @@ export default class NavView extends Component {
         <ul className='nav-tier-1'>
           <li>1 - 1</li>
           <li>1 - 2</li>
-          <li>1 - 3 <i className='fa fa-glass' /></li>
+          <li>1 - 3</li>
         </ul>
         <ul className='nav-tier-2'>
-          <li>2 - 1</li>
-          <li>2 - 2</li>
-          <li>2 - 3</li>
+          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 1</Link></li>
+          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 2</Link></li>
+          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 3</Link></li>
         </ul>
       </nav>
     )

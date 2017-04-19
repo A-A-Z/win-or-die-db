@@ -1,0 +1,34 @@
+
+.main-nav {
+  background-color: #666;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  width: auto;
+
+  li {
+    float: none;
+  }
+
+  .nav-tier-1 {
+    float: left;
+    width: $nav-t1-width;
+    text-align: center;
+
+    li {
+      line-height: 20px;
+    }
+  }
+
+  .nav-tier-2 {
+    background-color: #777;
+    float: left;
+    height: 100%;
+    width: $nav-t2-width;
+
+    li {
+      line-height: 20px;
+    }
+  }
+}

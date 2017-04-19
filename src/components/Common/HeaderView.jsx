@@ -7,14 +7,9 @@ export default class HeaderView extends Component {
       <header className='main-header'>
         <div className='container'>
           <h1 className='page-title'>
-            <span className='large'>Win</span> or <span className='large'>Die</span> <span className='db'>DB</span>
+            <Link to={`/`}><span className='large'>Win</span> or <span className='large'>Die</span> <span className='db'>DB</span></Link>
           </h1>
         </div>
-        <nav className='main-nav'>
-          <div className='container'>
-            <Link to={`/`}>Home</Link>
-          </div>
-        </nav>
       </header>
     )
   }

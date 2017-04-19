@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Router, Route } from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
 
-import { HeaderView, FooterView } from './components/Common'
+import { HeaderView, NavView, FooterView } from './components/Common'
 
 import { // TODO Get ride of this
   LandingContainer,
@@ -20,8 +20,9 @@ class App extends Component {
   render () {
     return (
       <Router history={createBrowserHistory()}>
-        <div>
+        <div className='main-container'>
           <HeaderView />
+          <NavView />
           <main>
             <div>
               <Route exact path='/' component={LandingContainer} />

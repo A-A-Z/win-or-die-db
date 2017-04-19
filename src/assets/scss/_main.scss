@@ -18,3 +18,12 @@ body {
 a {
   color: $link-colour;
 }
+
+main {
+	padding-left: ($nav-t1-width + $nav-t2-width) 
+}
+
+.main-container {
+	height: 100%;
+	position: relative;
+}

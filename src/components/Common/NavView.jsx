@@ -11,12 +11,23 @@ export default class NavView extends Component {
 
     this.state = {
       activeMenu1: -1,
+      firstChild: null,
       menuItems: [
         {
           label: 'Episodes',
           subItems: [
             {
               label: 'Episode Index',
+              icon: 'fa-list',
+              url: '/episodes'
+            },
+            {
+              label: 'Episode Index 2',
+              icon: 'fa-list',
+              url: '/episodes'
+            },
+            {
+              label: 'Episode Index 3',
               icon: 'fa-list',
               url: '/episodes'
             }
@@ -27,6 +38,11 @@ export default class NavView extends Component {
           subItems: [
             {
               label: 'Characters Index',
+              icon: 'fa-list',
+              url: '/characters'
+            },
+            {
+              label: 'Characters Index 2',
               icon: 'fa-list',
               url: '/characters'
             }
@@ -49,6 +65,7 @@ export default class NavView extends Component {
       ]
     }
     this.menuBlur = this.menuBlur.bind(this)
+    this.menuKeypress = this.menuKeypress.bind(this)
     this.createParentMenuItem = this.createParentMenuItem.bind(this)
   }
   menuBlur () {
@@ -57,6 +74,20 @@ export default class NavView extends Component {
     }
 
     timeout = setTimeout(resetMenu, 200)
+  }
+  menuKeypress (e) {
+    switch (e.charCode) {
+      case (0):
+      case (13):
+      case (32):
+        e.preventDefault()
+        this.state.firstChild.children[0].focus()
+        clearTimeout(timeout)
+        break
+
+      default:
+        // do nothing
+    }
   }
   createParentMenuItem (index, menuItem, isActive) {
     const onClick = () => {
@@ -77,9 +108,11 @@ export default class NavView extends Component {
         key={'tier-1-' + index}
         className={classNames({ 'active': isActive })}
         tabIndex='0'
+        role='button'
         onClick={onClick}
         onFocus={onFocus}
         onBlur={this.menuBlur}
+        onKeyPress={this.menuKeypress}
       >
         <span>{menuItem.label}</span>
       </li>)
@@ -90,7 +123,11 @@ export default class NavView extends Component {
     if (menuItem.subItems.length > 0) {
       for (let i = 0; i < menuItem.subItems.length; i++) {
         let subItem = menuItem.subItems[i]
-        tier2.push(<li key={'tier-2-' + i}><Link to={subItem.url}><i className={classNames('fa', subItem.icon)} aria-hidden='true' />{subItem.label}</Link></li>)
+        if (i === 0) {
+          tier2.push(<li key={'tier-2-' + i} ref={(input) => { this.state.firstChild = input }}><Link to={subItem.url}><i className={classNames('fa', subItem.icon)} aria-hidden='true' />{subItem.label}</Link></li>)
+        } else {
+          tier2.push(<li key={'tier-2-' + i}><Link to={subItem.url}><i className={classNames('fa', subItem.icon)} aria-hidden='true' />{subItem.label}</Link></li>)
+        }
       }
     }
 

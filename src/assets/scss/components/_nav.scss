@@ -1,13 +1,17 @@
 
 .main-nav {
-  $colour-t1-bg: #666;
-  $colour-t2-bg: #888;
+  $colour-t1-bg: #333;
+  $colour-t2-bg: #444;
+  $colour-link: #BBB;
+  $colour-link-active: #FFF;
 
   $teir-height: 40px;
 
+  background-color: transparent;
+  box-shadow: unset;
   display: block;
-  height: auto;
-  margin-bottom: $teir-height;
+  height: ($teir-height * 2);
+  line-height: $teir-height;
   position: relative;
   text-align: center;
 
@@ -18,6 +22,7 @@
 
     ul {
       display: inline-block;
+      height: $teir-height;
       margin: 0 auto;
 
       li {
@@ -27,6 +32,7 @@
         span {
           cursor: pointer;
           padding: 0 15px;
+          color: $colour-link;
         }
 
         i {
@@ -38,21 +44,50 @@
 
     &-1 {
       background-color: $colour-t1-bg;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 20;
 
-      ul li.active {
-        background-color: $colour-t2-bg;
-        outline: 0;
+      ul li {
+        height: $teir-height;
+
+        &.active {
+          background-color: $colour-t2-bg;
+          outline: 0;
+        }
+
+        &:hover {
+          span {
+            color: $colour-link-active;
+          }
+        }
       }
     }
 
     &-2 {
       background-color: $colour-t2-bg;
-      display: none;
       position: absolute;
       width: 100%;
+      top: 0;
+      transition: all 0.1s ease;
+      z-index: 10;
 
       &.active {
-        display: block;
+        top: $teir-height;
+      }
+
+      a {
+        &:hover {
+          background-color: transparent;
+          color: $colour-link-active;
+        }
+
+        &:focus {
+          color: $colour-link-active;
+          outline: 0;
+          text-decoration: underline;
+        }
       }
     }
   }

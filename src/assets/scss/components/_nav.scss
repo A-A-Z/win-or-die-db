@@ -1,38 +1,59 @@
 
 .main-nav {
-  background-color: #666;
+  $colour-t1-bg: #666;
+  $colour-t2-bg: #888;
+
+  $teir-height: 40px;
+
   display: block;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  width: auto;
+  height: auto;
+  margin-bottom: $teir-height;
+  position: relative;
+  text-align: center;
 
-  li {
-    float: none;
+  .nav-tier {
+    height: $teir-height;
+    line-height: $teir-height;
+    overflow: hidden;
 
-    i {
-      height: auto;
+    ul {
+      display: inline-block;
+      margin: 0 auto;
+
+      li {
+        margin: 0 auto;
+
+        a,
+        span {
+          cursor: pointer;
+          padding: 0 15px;
+        }
+
+        i {
+          margin-right: 4px;
+        }
+      }
+
     }
-  }
 
-  .nav-tier-1 {
-    float: left;
-    width: $nav-t1-width;
-    text-align: center;
+    &-1 {
+      background-color: $colour-t1-bg;
 
-    li {
-      line-height: 20px;
+      ul li.active {
+        background-color: $colour-t2-bg;
+        outline: 0;
+      }
     }
-  }
 
-  .nav-tier-2 {
-    background-color: #777;
-    float: left;
-    height: 100%;
-    width: $nav-t2-width;
+    &-2 {
+      background-color: $colour-t2-bg;
+      display: none;
+      position: absolute;
+      width: 100%;
 
-    li {
-      line-height: 20px;
+      &.active {
+        display: block;
+      }
     }
   }
 }

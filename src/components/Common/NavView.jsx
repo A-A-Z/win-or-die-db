@@ -1,21 +1,128 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
 import 'font-awesome-loader'
 
+let timeout = null
+
 export default class NavView extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      activeMenu1: -1,
+      menuItems: [
+        {
+          label: 'Episodes',
+          subItems: [
+            {
+              label: 'Episode Index',
+              icon: 'fa-list',
+              url: '/episodes'
+            }
+          ]
+        },
+        {
+          label: 'Characters',
+          subItems: [
+            {
+              label: 'Characters Index',
+              icon: 'fa-list',
+              url: '/characters'
+            }
+          ]
+        },
+        {
+          label: 'Factions',
+          subItems: [
+            {
+              label: 'Factions Index',
+              icon: 'fa-list',
+              url: '/factions'
+            }
+          ]
+        },
+        {
+          label: 'Titles',
+          subItems: []
+        }
+      ]
+    }
+    this.menuBlur = this.menuBlur.bind(this)
+    this.createParentMenuItem = this.createParentMenuItem.bind(this)
+  }
+  menuBlur () {
+    const resetMenu = () => {
+      this.setState({ activeMenu1: -1 })
+    }
+
+    timeout = setTimeout(resetMenu, 200)
+  }
+  createParentMenuItem (index, menuItem, isActive) {
+    const onClick = () => {
+      this.setState({
+        activeMenu1: index
+      })
+    }
+
+    const onFocus = () => {
+      clearTimeout(timeout)
+      this.setState({
+        activeMenu1: index
+      })
+    }
+
+    return (
+      <li
+        key={'tier-1-' + index}
+        className={classNames({ 'active': isActive })}
+        tabIndex='0'
+        onClick={onClick}
+        onFocus={onFocus}
+        onBlur={this.menuBlur}
+      >
+        <span>{menuItem.label}</span>
+      </li>)
+  }
+  createChildMenuItem (menuItem) {
+    let tier2 = []
+
+    if (menuItem.subItems.length > 0) {
+      for (let i = 0; i < menuItem.subItems.length; i++) {
+        let subItem = menuItem.subItems[i]
+        tier2.push(<li key={'tier-2-' + i}><Link to={subItem.url}><i className={classNames('fa', subItem.icon)} aria-hidden='true' />{subItem.label}</Link></li>)
+      }
+    }
+
+    return tier2
+  }
   render () {
+    let tier1 = []
+    let tier2 = []
+    let showTier2 = false
+
+    for (let i = 0; i < this.state.menuItems.length; i++) {
+      let isActive = (i === parseInt(this.state.activeMenu1))
+
+      tier1.push(this.createParentMenuItem(i, this.state.menuItems[i], isActive))
+      if (isActive) {
+        showTier2 = true
+        tier2 = this.createChildMenuItem(this.state.menuItems[i])
+      }
+    }
+
     return (
       <nav className='main-nav'>
-        <ul className='nav-tier-1'>
-          <li>1 - 1</li>
-          <li>1 - 2</li>
-          <li>1 - 3</li>
-        </ul>
-        <ul className='nav-tier-2'>
-          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 1</Link></li>
-          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 2</Link></li>
-          <li><Link to={`/`}><i className='fa fa-chevron-right' ariaHidden='true' /> 2 - 3</Link></li>
-        </ul>
+        <div className='nav-tier nav-tier-1'>
+          <ul>
+            {tier1}
+          </ul>
+        </div>
+        <div className={classNames('nav-tier', 'nav-tier-2', { 'active': showTier2 })}>
+          <ul>
+            {tier2}
+          </ul>
+        </div>
       </nav>
     )
   }

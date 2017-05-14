@@ -90,13 +90,7 @@ export default class NavView extends Component {
     }
   }
   createParentMenuItem (index, menuItem, isActive) {
-    const onClick = () => {
-      this.setState({
-        activeMenu1: index
-      })
-    }
-
-    const onFocus = () => {
+    const setActive = () => {
       clearTimeout(timeout)
       this.setState({
         activeMenu1: index
@@ -109,8 +103,9 @@ export default class NavView extends Component {
         className={classNames({ 'active': isActive })}
         tabIndex='0'
         role='button'
-        onClick={onClick}
-        onFocus={onFocus}
+        aria-pressed={isActive ? 'true' : 'false'}
+        onClick={setActive}
+        onFocus={setActive}
         onBlur={this.menuBlur}
         onKeyPress={this.menuKeypress}
       >

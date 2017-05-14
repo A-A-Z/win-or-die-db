@@ -114,7 +114,7 @@ export default class NavView extends Component {
         onBlur={this.menuBlur}
         onKeyPress={this.menuKeypress}
       >
-        <span>{menuItem.label}</span>
+        <span><i className='fa fa-shield' aria-hidden='true' /> {menuItem.label}</span>
       </li>)
   }
   createChildMenuItem (menuItem) {

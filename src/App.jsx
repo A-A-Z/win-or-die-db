@@ -13,6 +13,7 @@ import {
   CharacterDetailContainer,
   EpisodeDetailContainer,
   EpisodesListContainer,
+  FactionCharsContainer,
   FactionsListContainer
 } from './components/Pages'
 
@@ -30,7 +31,8 @@ class App extends Component {
               <Route path='/character/:charKey' component={CharacterDetailContainer} />
               <Route path='/episodes' component={EpisodesListContainer} />
               <Route path='/episode/:seasonNum/:episodeNum' component={EpisodeDetailContainer} />
-              <Route path='/factions' component={FactionsListContainer} />
+              <Route path='/factions' exact component={FactionsListContainer} />
+              <Route path='/factions/characters' component={FactionCharsContainer} />
             </div>
           </main>
           <FooterView />

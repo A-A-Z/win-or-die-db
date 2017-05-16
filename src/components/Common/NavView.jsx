@@ -40,17 +40,17 @@ export default class NavView extends Component {
               label: 'Characters Index',
               icon: 'fa-list',
               url: '/characters'
-            },
-            {
-              label: 'Characters Index 2',
-              icon: 'fa-list',
-              url: '/characters'
             }
           ]
         },
         {
           label: 'Factions',
           subItems: [
+            {
+              label: 'Factions by Characters',
+              icon: 'fa-list',
+              url: '/factions/characters'
+            },
             {
               label: 'Factions Index',
               icon: 'fa-list',

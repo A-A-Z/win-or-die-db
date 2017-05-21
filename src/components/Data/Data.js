@@ -28,6 +28,15 @@ export default class Data {
       }
     }
 
+    // run through Factions
+    for (let [index, entry] of FactionsData.entries()) {
+      let factionsExtend = {
+        members: { primary: [], secondary: [] }
+      }
+      this.factions.push(Object.assign(entry, factionsExtend))
+      this.factionsIndex[entry.nameshort] = index
+    }
+
     // run through Characters
     for (let [index, entry] of CharactersData.entries()) {
       let characterExtend = {
@@ -40,20 +49,16 @@ export default class Data {
       this.charactersIndex[entry.nameshort] = index
     }
 
-    // run through Factions
-    for (let [index, entry] of FactionsData.entries()) {
-      let factionsExtend = {
-        members: { primary: [], secondary: [] }
-      }
-      this.factions.push(Object.assign(entry, factionsExtend))
-      this.factionsIndex[entry.nameshort] = index
-    }
-
     // run through Character-Factions
     for (let charFact of CharFactionsData) {
       let charIndex = this.charactersIndex[charFact.char]
       let factIndex = this.factionsIndex[charFact.faction]
-      this.characters[charIndex].factions[charFact.type].push(FactionsData[factIndex])
+
+      // add faction to character
+      this.characters[charIndex].factions[charFact.type].push(FactionsData[factIndex]) // Todo: Should this just be a index key?
+
+      // add character to faction
+      this.factions[factIndex].members[charFact.type].push(charFact.char)
     }
 
     // run through entrances
@@ -81,9 +86,9 @@ export default class Data {
     return this.characters
   }
 
-  static getCharacter (key) {
-    if (this.charactersIndex.hasOwnProperty(key)) {
-      return this.characters[this.charactersIndex[key]]
+  static getCharacter (charKey) {
+    if (this.charactersIndex.hasOwnProperty(charKey)) {
+      return this.characters[this.charactersIndex[charKey]]
     } else {
       return null
     }

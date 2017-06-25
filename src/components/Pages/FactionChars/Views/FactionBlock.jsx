@@ -6,20 +6,30 @@ export default class FactionBlock extends Component {
   render () {
     const faction = this.props.factionData
     let livingChars = []
-
-    console.log('this.props.factionData', faction)
+    let deadChars = []
 
     for (let member of faction.members.primary) {
       const charData = Data.getCharacter(member)
-      livingChars.push(<li>{charData.namedisplay}</li>)
+
+      if (Data.isCharLiving(member)) {
+        livingChars.push(<li key={'living-' + member}>{charData.namedisplay}</li>)
+      } else {
+        deadChars.push(<li key={'dead-' + member}>{charData.namedisplay}</li>)
+      }
     }
 
     return (
       <div>
         <h3>{faction.namedisplay}</h3>
 
+        Living ({livingChars.length})
         <ul>
           {livingChars}
+        </ul>
+
+        Dead ({deadChars.length})
+        <ul>
+          {deadChars}
         </ul>
       </div>
     )

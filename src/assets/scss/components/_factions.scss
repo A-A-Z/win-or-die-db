@@ -33,3 +33,42 @@ main .faction {
   }
 
 }
+
+.house-label {
+  div {
+    color: #666;
+    font-size: 0.6em;
+    letter-spacing: 5px;
+    line-height: 1.5;
+  }
+  div + div {
+    color: #e5e5e5;
+    font-family: 'Game of Thrones';
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+}
+
+.house-bullet {
+  $size: 18px;
+
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.1);
+  height: $size;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  width: $size;
+
+  &:after {
+    content: '\f132';
+    font-family: FontAwesome;
+    font-size: 0.8em;
+    left: 0;
+    line-height: $size;
+    position: absolute;
+    top: 0;
+    width: $size;
+  }
+}

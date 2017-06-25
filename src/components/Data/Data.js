@@ -109,6 +109,15 @@ export default class Data {
       return null
     }
   }
+
+  static isCharLiving (charKey) {
+    const thisChar = this.getCharacter(charKey)
+    if (thisChar) {
+      return (thisChar.entrances > thisChar.exits)
+    } else {
+      return null
+    }
+  }
 }
 
 Data.indexData()

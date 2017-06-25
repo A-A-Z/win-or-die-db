@@ -1,0 +1,89 @@
+
+.graph-block {
+  $colour-living: #8FA88F;
+  $colour-dead: #8D7B7B;
+
+  $graph-height: 500px;
+  $bar-max-height: 360px;
+
+  background-color: #111;
+  margin-top: -40px;
+  min-height: $graph-height;
+  padding: 40px 15px 15px 15px;
+  position: relative;
+  overflow-y: auto;
+
+  .bar-graph {
+    bottom: 15px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+
+    .bar {
+      $bar-width: 95px;
+
+      display: inline-block;
+      margin: 0 5px;
+      min-width: $bar-width;
+      text-align: center;
+
+      .bar-graphic {
+        height: $bar-max-height;
+        margin: 0 auto;
+        position: relative;
+        width: 60px;
+
+        .bar-heading {
+          font-size: 0.6em;
+          position: absolute;
+          top: -20px;
+          width: 100%;
+
+          .labl-style {
+            &-living {
+              color: $colour-living;
+            }
+            &-dead {
+              color: $colour-dead;
+            }
+          }
+        }
+
+        .bar-body {
+          bottom: 0;
+          background-color: #222;
+          height: 0%;
+          position: absolute;
+          width: 100%;
+
+          .bar-part {
+            height: 0%;
+
+            &.bar-style {
+              &-living {
+                background-color: $colour-living;
+              }
+              &-dead {
+                background-color: $colour-dead;
+              }
+            }
+          }
+        }
+      }
+
+      .bar-label {
+        padding-top: 4px;
+
+        .house-bullet {
+          margin-top: 4px;
+        }
+      }
+
+      .bar-stacked {
+
+      }
+    }
+  }
+}

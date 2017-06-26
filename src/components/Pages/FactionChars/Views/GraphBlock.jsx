@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 import Data from '../../../Data/Data'
 import { Bar } from './'
@@ -20,21 +21,30 @@ export default class GraphBlock extends Component {
 
     return (
       <section className='graph-block'>
-        <ul className='bar-graph'>
-          {factions.map((faction, i) => {
-            if ((showHouseOnly && faction.ishouse) || !showHouseOnly) {
-              return (
-                <Bar
-                  key={'bar-' + faction.nameshort}
-                  barLabel={faction.namedisplay}
-                  hightestCount={hightestCount}
-                  factionKey={faction.nameshort}
-                  factionData={faction}
-                />
-              )
-            }
-          })}
-        </ul>
+        <Scrollbars
+          renderTrackHorizontal={({ style, ...props }) =>
+            <div {...props} style={{ ...style }} className='graph-scroll-track' />
+          }
+          renderThumbHorizontal={({ style, ...props }) =>
+            <div style={{ ...style }} {...props} className='graph-scroll-bar' />
+          }
+        >
+          <ul className='bar-graph'>
+            {factions.map((faction, i) => {
+              if ((showHouseOnly && faction.ishouse) || !showHouseOnly) {
+                return (
+                  <Bar
+                    key={'bar-' + faction.nameshort}
+                    barLabel={faction.namedisplay}
+                    hightestCount={hightestCount}
+                    factionKey={faction.nameshort}
+                    factionData={faction}
+                  />
+                )
+              }
+            })}
+          </ul>
+        </Scrollbars>
       </section>
     )
   }

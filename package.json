@@ -8,6 +8,7 @@
     "history": "^4.6.1",
     "materialize-css": "^0.98.1",
     "react": "^15.4.2",
+    "react-custom-scrollbars": "^4.1.2",
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0"

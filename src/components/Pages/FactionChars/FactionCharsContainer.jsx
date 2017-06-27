@@ -1,40 +1,44 @@
 import React, { Component } from 'react'
 
 import Data from '../../Data/Data'
-import { FactionBlock, GraphBlock } from './Views'
+import { GraphBlock, FactionDetails } from './Views'
 
 export default class FactionCharsContainer extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
+      activeFaction: {},
       factions: []
     }
+
+    this.setActiveFaction = this.setActiveFaction.bind(this)
   }
   componentWillMount () {
     this.setState({
       factions: Data.getFactions()
     })
   }
-  render () {
-    let showHouseOnly = true
+  setActiveFaction (factionKey) {
+    let newFaction = Data.getFaction(factionKey)
 
+    if (newFaction) {
+      this.setState({
+        activeFaction: newFaction
+      })
+    }
+  }
+  render () {
     return (
-      <div>
-        <GraphBlock />
-        <div className='container'>
-          {this.state.factions.map((faction, i) => {
-            if ((showHouseOnly && faction.ishouse) || !showHouseOnly) {
-              return (
-                <FactionBlock
-                  key={'faction-' + faction.nameshort}
-                  factionData={faction}
-                  showHouseOnly={showHouseOnly}
-                />
-              )
-            }
-          })}
-        </div>
+      <div style={{ position: 'relative' }}>
+        <h2 className='graph-title'>Houses by Characters</h2>
+        <GraphBlock
+          factions={this.state.factions}
+          setActiveFaction={this.setActiveFaction}
+        />
+        <FactionDetails
+          factionData={this.state.activeFaction}
+        />
       </div>
     )
   }

@@ -3,6 +3,11 @@ import React, { Component } from 'react'
 import Data from '../../../Data/Data'
 
 export default class Bar extends Component {
+  constructor (props) {
+    super(props)
+    this.setActive = this.setActive.bind(this)
+    this.barKeypress = this.barKeypress.bind(this)
+  }
   getHeight (value, total) {
     return (Math.round((value / total) * 100) + '%')
   }
@@ -22,9 +27,27 @@ export default class Bar extends Component {
     }
     return counts
   }
+  setActive () {
+    console.log('set active', this.props.factionData.nameshort)
+    this.props.setActiveFaction(this.props.factionData.nameshort)
+  }
+  barKeypress (e) {
+    switch (e.charCode) {
+      case (0):
+      case (13):
+      case (32):
+        e.preventDefault()
+        this.setActive()
+        break
+
+      default:
+        // do nothing
+    }
+  }
   render () {
     const faction = this.props.factionData
     const membersCount = this.getMembersCount(faction)
+
     let styleTotal = {
       height: this.getHeight(membersCount.total, this.props.hightestCount)
     }
@@ -34,10 +57,15 @@ export default class Bar extends Component {
     let styleDead = {
       height: this.getHeight(membersCount.dead, membersCount.total)
     }
-    let labelArray = this.props.barLabel.split(' ')
+    let labelArray = this.props.factionData.namedisplay.split(' ')
 
     return (
-      <li className='bar'>
+      <li className='bar'
+        tabIndex='0'
+        aria-label={this.props.factionData.namedisplay}
+        onClick={this.setActive}
+        onKeyPress={this.barKeypress}
+      >
         <div className='bar-graphic bar-stacked'>
           <div className='bar-body' style={styleTotal}>
             <div className='bar-heading'>
@@ -56,7 +84,7 @@ export default class Bar extends Component {
               )
             })}
           </div>
-          <div className={'house-bullet faction-' + this.props.factionKey} />
+          <div className={'house-bullet faction-' + this.props.factionData.nameshort} />
         </div>
       </li>
     )
@@ -64,11 +92,10 @@ export default class Bar extends Component {
 }
 
 // Property Type Validation
-const { number, object, string } = React.PropTypes
+const { func, number, object } = React.PropTypes
 
 Bar.propTypes = {
-  barLabel: string.isRequired,
   factionData: object.isRequired,
-  factionKey: string.isRequired,
-  hightestCount: number.isRequired
+  hightestCount: number.isRequired,
+  setActiveFaction: func.isRequired
 }

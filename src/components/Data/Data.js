@@ -98,6 +98,14 @@ export default class Data {
     return this.factions
   }
 
+  static getFaction (factKey) {
+    if (this.factionsIndex.hasOwnProperty(factKey)) {
+      return this.factions[this.factionsIndex[factKey]]
+    } else {
+      return null
+    }
+  }
+
   static getEpisodes () {
     return this.episodes
   }

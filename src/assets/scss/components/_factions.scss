@@ -44,8 +44,12 @@ main .faction {
   div + div {
     color: #e5e5e5;
     font-family: 'Game of Thrones';
-    font-size: 0.8em;
-    letter-spacing: 1px;
+    font-size: 0.7em;
+    letter-spacing: 2px;
+
+    &:first-letter {
+      font-size: 125%;
+    }
   }
 }
 

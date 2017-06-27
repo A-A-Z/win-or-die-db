@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars'
 
-import Data from '../../../Data/Data'
 import { Bar } from './'
 
 export default class GraphBlock extends Component {
-  getFactionsData () {
-    return Data.getFactions()
-  }
   render () {
     const showHouseOnly = true
-    const factions = this.getFactionsData()
+    const factions = this.props.factions
     let hightestCount = 0
 
     factions.map((faction, i) => {
@@ -35,10 +31,9 @@ export default class GraphBlock extends Component {
                 return (
                   <Bar
                     key={'bar-' + faction.nameshort}
-                    barLabel={faction.namedisplay}
-                    hightestCount={hightestCount}
-                    factionKey={faction.nameshort}
                     factionData={faction}
+                    hightestCount={hightestCount}
+                    setActiveFaction={this.props.setActiveFaction}
                   />
                 )
               }
@@ -48,4 +43,12 @@ export default class GraphBlock extends Component {
       </section>
     )
   }
+}
+
+// Property Type Validation
+const { array, func } = React.PropTypes
+
+GraphBlock.propTypes = {
+  factions: array.isRequired,
+  setActiveFaction: func.isRequired
 }

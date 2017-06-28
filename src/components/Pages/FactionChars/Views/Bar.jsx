@@ -18,11 +18,13 @@ export default class Bar extends Component {
       dead: 0
     }
     for (let member of faction.members.primary) {
-      counts.total++
-      if (Data.isCharLiving(member)) {
-        counts.living++
-      } else {
-        counts.dead++
+      if (Data.hasCharEntered(member, this.props.seasion, this.props.episode)) {
+        counts.total++
+        if (Data.isCharLiving(member, this.props.seasion, this.props.episode)) {
+          counts.living++
+        } else {
+          counts.dead++
+        }
       }
     }
     return counts
@@ -96,6 +98,8 @@ const { func, number, object } = React.PropTypes
 
 Bar.propTypes = {
   factionData: object.isRequired,
+  episode: number.isRequired,
   hightestCount: number.isRequired,
+  seasion: number.isRequired,
   setActiveFaction: func.isRequired
 }

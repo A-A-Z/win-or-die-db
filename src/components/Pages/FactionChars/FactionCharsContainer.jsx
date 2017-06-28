@@ -9,7 +9,9 @@ export default class FactionCharsContainer extends Component {
 
     this.state = {
       activeFaction: {},
-      factions: []
+      factions: [],
+      seasion: 1,
+      episode: 1
     }
 
     this.setActiveFaction = this.setActiveFaction.bind(this)
@@ -34,10 +36,14 @@ export default class FactionCharsContainer extends Component {
         <h2 className='graph-title'>Houses by Characters</h2>
         <GraphBlock
           factions={this.state.factions}
+          seasion={this.state.seasion}
+          episode={this.state.episode}
           setActiveFaction={this.setActiveFaction}
         />
         <FactionDetails
           factionData={this.state.activeFaction}
+          seasion={this.state.seasion}
+          episode={this.state.episode}
         />
       </div>
     )

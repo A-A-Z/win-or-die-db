@@ -33,6 +33,8 @@ export default class GraphBlock extends Component {
                     key={'bar-' + faction.nameshort}
                     factionData={faction}
                     hightestCount={hightestCount}
+                    seasion={this.props.seasion}
+                    episode={this.props.episode}
                     setActiveFaction={this.props.setActiveFaction}
                   />
                 )
@@ -46,9 +48,11 @@ export default class GraphBlock extends Component {
 }
 
 // Property Type Validation
-const { array, func } = React.PropTypes
+const { array, func, number } = React.PropTypes
 
 GraphBlock.propTypes = {
+  episode: number.isRequired,
   factions: array.isRequired,
+  seasion: number.isRequired,
   setActiveFaction: func.isRequired
 }

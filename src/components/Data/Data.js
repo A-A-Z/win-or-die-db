@@ -118,13 +118,61 @@ export default class Data {
     }
   }
 
-  static isCharLiving (charKey) {
+  static hasCharEntered (charKey, seasonNo = 1, epNo = 2) {
     const thisChar = this.getCharacter(charKey)
+
     if (thisChar) {
-      return (thisChar.entrances > thisChar.exits)
+      for (let move of thisChar.entrances) {
+        if (this.isMoveWithinEp(move, seasonNo, epNo)) {
+          return true
+        }
+      }
+
+      return false
     } else {
       return null
     }
+  }
+
+  static isCharLiving (charKey, seasonNo = 1, epNo = 2) {
+    const thisChar = this.getCharacter(charKey)
+
+    if (thisChar) {
+      if (seasonNo > 0 && epNo > 0) {
+        let entrances = 0
+        let exits = 0
+
+        // count entrances by this episode
+        for (let move of thisChar.entrances) {
+          if (this.isMoveWithinEp(move, seasonNo, epNo)) {
+            entrances++
+          }
+        }
+
+        // if no entrances then they are "alive" (not 100% true, but go with it for now)
+        if (entrances === 0) {
+          return true
+        }
+
+        // count exits by this episode
+        for (let move of thisChar.exits) {
+          if (this.isMoveWithinEp(move, seasonNo, epNo)) {
+            exits++
+          }
+        }
+
+        return (entrances > exits)
+      } else {
+        return (thisChar.entrances > thisChar.exits)
+      }
+    } else {
+      return null
+    }
+  }
+
+  static isMoveWithinEp (move, seasonNo, epNo) {
+    // is entrances/exit in or before this season/episode
+    return (seasonNo > move.season || (seasonNo === move.season && epNo >= move.episode))
   }
 }
 

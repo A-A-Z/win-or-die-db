@@ -3,8 +3,9 @@
   $colour-living: #B3C5B3;
   $colour-dead: #BA8181;
 
-  $graph-height: 500px;
-  $bar-max-height: 360px;
+  $graph-height: 600px;
+  $bar-max-height: 380px;
+  $bar-width: 95px;
 
   background-color: #111;
   height: $graph-height;
@@ -34,8 +35,6 @@
     white-space: nowrap;
 
     .bar {
-      $bar-width: 95px;
-
       background-color: rgba(255, 240, 240, 0);
       border: 2px solid rgba(255, 240, 240, 0);
       border-radius: 3px;
@@ -43,7 +42,7 @@
       display: inline-block;
       margin: 0 5px;
       min-width: $bar-width;
-      padding: 25px 5px 5px 5px;
+      padding: 0 5px 5px 5px;
       text-align: center;
       transition: all 0.2s ease;
 
@@ -117,4 +116,46 @@
   position: absolute;
   top: 15px;
   z-index: 20;
+}
+
+.graph-controls {
+  position: absolute;
+  text-align: center;
+  top: 40px;
+  width: 100%;
+  z-index: 21;
+
+  .controls-body {
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    border-width: 2px 0;
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.6);
+    display: inline-block;
+    margin: 0 auto;
+    padding: 4px 10px;
+
+    .episode-controls {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        float: left;
+        padding: 0 8px;
+
+        &.direction-button {
+          cursor: pointer;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #A18432;
+          }
+        }
+
+        &.active-ep-title {
+          min-width: 350px;
+        }
+      }
+    }
+  }
 }

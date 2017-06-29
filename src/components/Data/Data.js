@@ -12,6 +12,8 @@ export default class Data {
     this.characters = []
     this.factions = []
     this.episodes = {}
+    this.episodesIndex = {}
+    this.episodeCount = EpisodesData.length
     this.charactersIndex = {}
     this.factionsIndex = {}
 
@@ -22,9 +24,15 @@ export default class Data {
       }
 
       this.episodes[entry.season][entry.episode] = {
+        epIndex: entry.index,
         title: entry.title,
         entrances: [],
         exits: []
+      }
+
+      this.episodesIndex[entry.index] = {
+        season: entry.season,
+        episode: entry.episode
       }
     }
 
@@ -113,6 +121,14 @@ export default class Data {
   static getEpisode (session, episode) {
     if (this.episodes[session] && this.episodes[session][episode]) {
       return this.episodes[session][episode]
+    } else {
+      return null
+    }
+  }
+
+  static getEpisodeByIndex (epIndex) {
+    if (this.episodesIndex.hasOwnProperty(epIndex)) {
+      return this.episodesIndex[epIndex]
     } else {
       return null
     }

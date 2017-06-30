@@ -12,7 +12,9 @@ export default class FactionCharsContainer extends Component {
       factions: [],
       episodes: [],
       seasion: 1,
-      episode: 1
+      episode: 1,
+      isFirstEpisode: true,
+      isLastEpisode: false
     }
 
     this.setActiveFaction = this.setActiveFaction.bind(this)
@@ -37,9 +39,20 @@ export default class FactionCharsContainer extends Component {
   }
 
   setActiveEp (seasion, episode) {
+    let isFirstEpisode = false
+    let isLastEpisode = false
+
+    if (seasion === 1 && episode === 1) {
+      isFirstEpisode = true
+    } else if (Data.isLastEpisode(seasion, episode)) {
+      isLastEpisode = true
+    }
+
     this.setState({
       seasion: seasion,
-      episode: episode
+      episode: episode,
+      isFirstEpisode: isFirstEpisode,
+      isLastEpisode: isLastEpisode
     })
   }
 
@@ -51,6 +64,8 @@ export default class FactionCharsContainer extends Component {
           activeEpisode={this.state.episode}
           activeSeasion={this.state.seasion}
           episodes={this.state.episodes}
+          isFirstEpisode={this.state.isFirstEpisode}
+          isLastEpisode={this.state.isLastEpisode}
           setActiveEp={this.setActiveEp}
         />
         <GraphBlock

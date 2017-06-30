@@ -16,6 +16,9 @@ export default class Data {
     this.episodeCount = EpisodesData.length
     this.charactersIndex = {}
     this.factionsIndex = {}
+    this.lastEpisodeFloat = 0
+    this.lastSeasion = 0
+    this.lastEpisode = 0
 
     // run through episodes
     for (let entry of EpisodesData) {
@@ -33,6 +36,13 @@ export default class Data {
       this.episodesIndex[entry.index] = {
         season: entry.season,
         episode: entry.episode
+      }
+
+      let epAsNumber = entry.season + (entry.episode / 100)
+      if (epAsNumber > this.lastEpisodeFloat) {
+        this.lastEpisodeFloat = epAsNumber
+        this.lastSeasion = entry.season
+        this.lastEpisode = entry.episode
       }
     }
 
@@ -134,6 +144,13 @@ export default class Data {
     }
   }
 
+  static getLastEpisode () {
+    return {
+      season: this.lastSeasion,
+      episode: this.lastEpisode
+    }
+  }
+
   static hasCharEntered (charKey, seasonNo = 1, epNo = 2) {
     const thisChar = this.getCharacter(charKey)
 
@@ -189,6 +206,11 @@ export default class Data {
   static isMoveWithinEp (move, seasonNo, epNo) {
     // is entrances/exit in or before this season/episode
     return (seasonNo > move.season || (seasonNo === move.season && epNo >= move.episode))
+  }
+
+  static isLastEpisode (seasonNo, epNo) {
+    let epAsNumber = seasonNo + (epNo / 100)
+    return (this.lastEpisodeFloat === epAsNumber)
   }
 }
 

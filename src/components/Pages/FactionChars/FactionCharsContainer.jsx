@@ -8,7 +8,7 @@ export default class FactionCharsContainer extends Component {
     super(props)
 
     this.state = {
-      activeFaction: {},
+      activeFaction: null,
       factions: [],
       episodes: [],
       seasion: 1,
@@ -19,6 +19,7 @@ export default class FactionCharsContainer extends Component {
 
     this.setActiveFaction = this.setActiveFaction.bind(this)
     this.setActiveEp = this.setActiveEp.bind(this)
+    this.setLatestAsActive = this.setLatestAsActive.bind(this)
   }
 
   componentWillMount () {
@@ -26,6 +27,8 @@ export default class FactionCharsContainer extends Component {
       factions: Data.getFactions(),
       episodes: Data.getEpisodes()
     })
+
+    this.setLatestAsActive()
   }
 
   setActiveFaction (factionKey) {
@@ -56,6 +59,16 @@ export default class FactionCharsContainer extends Component {
     })
   }
 
+  setLatestAsActive () {
+    const latest = Data.getLastestEpisode()
+    this.setState({
+      seasion: latest.seasion,
+      episode: latest.episode,
+      isFirstEpisode: false,
+      isLastEpisode: true
+    })
+  }
+
   render () {
     return (
       <div style={{ position: 'relative' }}>
@@ -67,6 +80,7 @@ export default class FactionCharsContainer extends Component {
           isFirstEpisode={this.state.isFirstEpisode}
           isLastEpisode={this.state.isLastEpisode}
           setActiveEp={this.setActiveEp}
+          setLatestAsActive={this.setLatestAsActive}
         />
         <GraphBlock
           factions={this.state.factions}
@@ -74,11 +88,13 @@ export default class FactionCharsContainer extends Component {
           episode={this.state.episode}
           setActiveFaction={this.setActiveFaction}
         />
-        <FactionDetails
-          factionData={this.state.activeFaction}
-          seasion={this.state.seasion}
-          episode={this.state.episode}
-        />
+        {this.state.activeFaction != null &&
+          <FactionDetails
+            factionData={this.state.activeFaction}
+            seasion={this.state.seasion}
+            episode={this.state.episode}
+          />
+        }
       </div>
     )
   }

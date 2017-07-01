@@ -144,9 +144,9 @@ export default class Data {
     }
   }
 
-  static getLastEpisode () {
+  static getLastestEpisode () {
     return {
-      season: this.lastSeasion,
+      seasion: this.lastSeasion,
       episode: this.lastEpisode
     }
   }
@@ -160,7 +160,6 @@ export default class Data {
           return true
         }
       }
-
       return false
     } else {
       return null

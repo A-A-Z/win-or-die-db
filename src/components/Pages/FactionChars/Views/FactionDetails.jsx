@@ -1,31 +1,28 @@
 import React, { Component } from 'react'
 
 import Data from '../../../Data/Data'
+import { getHouseLabel } from '../../../Common/Helpers.jsx'
 
 export default class FactionDetails extends Component {
   render () {
     const faction = this.props.factionData
-    let title = 'none'
+    let title = getHouseLabel(faction, 'large')
     let livingChars = []
     let deadChars = []
 
-    if (faction.nameshort) {
-      title = faction.namedisplay
+    for (let member of faction.members.primary) {
+      const charData = Data.getCharacter(member)
 
-      for (let member of faction.members.primary) {
-        const charData = Data.getCharacter(member)
-
-        if (Data.isCharLiving(member)) {
-          livingChars.push(<li key={'living-' + member}>{charData.namedisplay}</li>)
-        } else {
-          deadChars.push(<li key={'dead-' + member}>{charData.namedisplay}</li>)
-        }
+      if (Data.isCharLiving(member)) {
+        livingChars.push(<li key={'living-' + member}>{charData.namedisplay}</li>)
+      } else {
+        deadChars.push(<li key={'dead-' + member}>{charData.namedisplay}</li>)
       }
     }
 
     return (
       <section className='container'>
-        <h3>Faction: {title}</h3>
+        {title}
 
         <div className='row'>
           <div className='col m6'>

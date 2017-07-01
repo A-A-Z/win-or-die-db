@@ -10,6 +10,7 @@ export default class GraphControls extends Component {
     this.goToFirst = this.goToFirst.bind(this)
     this.goBack = this.goBack.bind(this)
     this.goForward = this.goForward.bind(this)
+    this.goToLatest = this.goToLatest.bind(this)
   }
 
   goToFirst (e) {
@@ -40,7 +41,7 @@ export default class GraphControls extends Component {
 
   goToLatest (e) {
     if (isActivateEvent(e) && !this.props.isLastEpisode) {
-      // nothing yet
+      this.props.setLatestAsActive()
     }
   }
 
@@ -104,5 +105,6 @@ GraphControls.propTypes = {
   episodes: object.isRequired,
   isFirstEpisode: bool.isRequired,
   isLastEpisode: bool.isRequired,
-  setActiveEp: func.isRequired
+  setActiveEp: func.isRequired,
+  setLatestAsActive: func.isRequired
 }

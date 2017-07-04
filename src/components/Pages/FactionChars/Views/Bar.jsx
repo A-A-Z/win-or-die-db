@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Data from '../../../Data/Data'
+import { HouseLabel } from '../../../Common'
 
 export default class Bar extends Component {
   constructor (props) {
@@ -59,7 +60,6 @@ export default class Bar extends Component {
     let styleDead = {
       height: this.getHeight(membersCount.dead, membersCount.total)
     }
-    let labelArray = this.props.factionData.namedisplay.split(' ')
 
     return (
       <li className='bar'
@@ -79,13 +79,10 @@ export default class Bar extends Component {
           </div>
         </div>
         <div className='bar-label'>
-          <div className='house-label'>
-            {labelArray.map((labelPart, i) => {
-              return (
-                <div key={'label-part-' + i}>{labelPart}</div>
-              )
-            })}
-          </div>
+          <HouseLabel
+            factionData={this.props.factionData}
+            labelSize='small'
+          />
           <div className={'house-bullet faction-' + this.props.factionData.nameshort} />
         </div>
       </li>

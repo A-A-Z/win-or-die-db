@@ -34,7 +34,16 @@ main .faction {
 
 }
 
-.house-label {
+h3.house-label {
+  font-size: 22px;
+
+  &.small {
+    font-size: 16px;
+  }
+  &.large {
+    font-size: 32px;
+  }
+
   div {
     color: #666;
     font-size: 0.6em;

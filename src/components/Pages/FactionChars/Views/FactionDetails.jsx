@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 
 import Data from '../../../Data/Data'
-import { getHouseLabel } from '../../../Common/Helpers.jsx'
+import { HouseLabel } from '../../../Common'
 
 export default class FactionDetails extends Component {
   render () {
     const faction = this.props.factionData
-    let title = getHouseLabel(faction, 'large')
     let livingChars = []
     let deadChars = []
 
@@ -22,7 +21,11 @@ export default class FactionDetails extends Component {
 
     return (
       <section className='container'>
-        {title}
+        <HouseLabel
+          factionData={this.props.factionData}
+          labelSize='large'
+        />
+        <div className={'house-bullet faction-' + this.props.factionData.nameshort} />
 
         <div className='row'>
           <div className='col m6'>

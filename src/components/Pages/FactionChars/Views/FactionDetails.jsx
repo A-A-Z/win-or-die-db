@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 
 import Data from '../../../Data/Data'
 import { HouseLabel } from '../../../Common'
@@ -8,37 +9,60 @@ export default class FactionDetails extends Component {
     const faction = this.props.factionData
     let livingChars = []
     let deadChars = []
+    let livingColClasses = ['col']
+    let deadColClasses = ['col']
+    let hasLiving = false
+    let hasDead = false
 
     for (let member of faction.members.primary) {
       const charData = Data.getCharacter(member)
 
-      if (Data.isCharLiving(member)) {
+      if (Data.isCharLiving(member, this.props.seasion, this.props.episode)) {
         livingChars.push(<li key={'living-' + member}>{charData.namedisplay}</li>)
+        hasLiving = true
       } else {
         deadChars.push(<li key={'dead-' + member}>{charData.namedisplay}</li>)
+        hasDead = true
       }
     }
 
+    if (hasLiving) {
+      deadColClasses.push('m6')
+    } else {
+      livingColClasses.push('hide')
+      deadColClasses.push('m12')
+    }
+
+    if (hasDead) {
+      livingColClasses.push('m6')
+    } else {
+      deadColClasses.push('hide')
+      livingColClasses.push('m12')
+    }
+
     return (
-      <section className='container'>
+      <section className='container' style={{paddingTop: '20px', textAlign: 'center'}}>
         <HouseLabel
           factionData={this.props.factionData}
           labelSize='large'
         />
-        <div className={'house-bullet faction-' + this.props.factionData.nameshort} />
 
         <div className='row'>
-          <div className='col m6'>
-            <h4>Living: {livingChars.length}</h4>
-            <ul>
-              {livingChars}
-            </ul>
+          <div className={classNames(livingColClasses)}>
+            <div style={{padding: '0 15px'}}>
+              <h4 className='list-heading'>Living ({livingChars.length})</h4>
+              <ul className='centered-items'>
+                {livingChars}
+              </ul>
+            </div>
           </div>
-          <div className='col m6'>
-            <h4>Dead: {deadChars.length}</h4>
-            <ul>
-              {deadChars}
-            </ul>
+          <div className={classNames(deadColClasses)}>
+            <div style={{padding: '0 15px'}}>
+              <h4 className='list-heading'>Dead ({deadChars.length})</h4>
+              <ul className='centered-items'>
+                {deadChars}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -48,8 +72,10 @@ export default class FactionDetails extends Component {
 }
 
 // Property Type Validation
-const { object } = React.PropTypes
+const { object, number } = React.PropTypes
 
 FactionDetails.propTypes = {
-  factionData: object.isRequired
+  episode: number.isRequired,
+  factionData: object.isRequired,
+  seasion: number.isRequired
 }

@@ -1,0 +1,30 @@
+
+.list-heading {
+  color: #e5e5e5;
+  display: table;
+  font-size: 1em;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: 100%;
+
+  &:before, &:after {
+    border-top: 1px solid #444;
+    content: '';
+    display: table-cell;
+    position: relative;
+    top: 0.5em;
+    width: 45%;
+  }
+  &:before { right: 2.5%; }
+  &:after { left: 2.5%; }
+}
+
+.centered-items {
+  text-align: center;
+
+  li {
+    padding-bottom: 5px;
+  }
+}

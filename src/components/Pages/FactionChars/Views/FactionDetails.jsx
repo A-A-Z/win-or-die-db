@@ -46,6 +46,7 @@ export default class FactionDetails extends Component {
           factionData={this.props.factionData}
           labelSize='large'
         />
+        <div className={'house-bullet faction-' + this.props.factionData.nameshort} />
 
         <div className='row'>
           <div className={classNames(livingColClasses)}>
@@ -64,6 +65,11 @@ export default class FactionDetails extends Component {
               </ul>
             </div>
           </div>
+          {(!hasLiving && !hasDead) &&
+            <p>
+              <em>No members</em>
+            </p>
+          }
         </div>
 
       </section>

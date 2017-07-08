@@ -1,13 +1,24 @@
 
-$main-bg-colour: #222;
-$main-text-colour: #BBB;
-$link-colour: #FFF;
+// named colours
+$colour-black: #000;
+$colour-de-york: #8ABF8A;
+$colour-mercury: #E5E5E5;
+$colour-mine-shaft: #222;
+$colour-roman: #DB6969;
+$colour-silver: #BBB;
+$colour-silver-light: #CCC;
+$colour-tundora: #444;
+$colour-white: #FFF;
 
-$nav-bg-colour: #000;
-$header-title-colour: #CCC;
+// assigned colours
+$main-bg-colour: $colour-mine-shaft;
+$main-text-colour: $colour-silver;
+$link-colour: $colour-white;
+$nav-bg-colour: $colour-black;
+$header-title-colour: $colour-silver-light;
+$colour-entrance: $colour-de-york;
+$colour-exit: $colour-roman;
 
-$colour-entrance: #8ABF8A;
-$colour-exit: #DB6969;
-
+// sizes
 $nav-t1-width: 100px;
 $nav-t2-width: 100px;

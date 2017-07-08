@@ -1,16 +1,21 @@
 
+$colour-list-heading: $colour-mercury;
+$colour-list-heading-border: $colour-tundora;
+
 .list-heading {
-  color: #e5e5e5;
+  color: $colour-list-heading;
   display: table;
   font-size: 1em;
   letter-spacing: 1px;
+  margin: 1.2rem auto 1rem auto;
+  max-width: 700px;
   text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
   width: 100%;
 
   &:before, &:after {
-    border-top: 1px solid #444;
+    border-top: 1px solid $colour-list-heading-border;
     content: '';
     display: table-cell;
     position: relative;

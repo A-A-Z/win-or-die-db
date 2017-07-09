@@ -166,7 +166,7 @@ export default class Data {
     }
   }
 
-  static isCharLiving (charKey, seasonNo = 1, epNo = 2) {
+  static isCharLiving (charKey, seasonNo = 0, epNo = 0) {
     const thisChar = this.getCharacter(charKey)
 
     if (thisChar) {

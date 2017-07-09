@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 
 import Data from '../../../Data/Data'
-import { HouseLabel } from '../../../Common'
+import { CharLink, HouseLabel } from '../../../Common'
 
 export default class FactionDetails extends Component {
   render () {
@@ -18,10 +18,10 @@ export default class FactionDetails extends Component {
       const charData = Data.getCharacter(member)
 
       if (Data.isCharLiving(member, this.props.seasion, this.props.episode)) {
-        livingChars.push(<li key={'living-' + member}>{charData.namedisplay}</li>)
+        livingChars.push(<li key={'living-' + member}><CharLink nameShort={charData.nameshort} /></li>)
         hasLiving = true
       } else {
-        deadChars.push(<li key={'dead-' + member}>{charData.namedisplay}</li>)
+        deadChars.push(<li key={'dead-' + member}><CharLink nameShort={charData.nameshort} /></li>)
         hasDead = true
       }
     }

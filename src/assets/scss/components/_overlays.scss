@@ -1,0 +1,22 @@
+$overlay-width: 250px;
+
+.info-overlay {
+
+  background-color: #CCC;
+  color: #333;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+  right: -$overlay-width;
+  top: 0;
+  transition: opacity 0.3s ease;
+  width: 0;
+  z-index: 50;
+}
+
+.holds-overlay:hover + .info-overlay {
+  height: auto;
+  opacity: 1;
+  width: $overlay-width;
+}
